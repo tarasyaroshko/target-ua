@@ -37,6 +37,12 @@ def get_words(filename, letters):
                     words.append((lst_line[0], "adjective"))
     return words
 def check_user_words(user_words, language_part, letters, dict_of_words):
+    """
+    >>> check_user_words(['гаяти', 'гнати', 'ініціалізація', 'узяти', 'щавель'], "verb", \
+['ю', 'щ', 'я', 'ц', 'г'], get_words("base.lst", ['ю', 'щ', 'я', 'ц', 'г']))
+    (['гаяти', 'гнати'], ['гнити', 'гнути', 'гоїти', 'грати', 'гріти', 'густи', 'юшити', \
+'явити', 'яріти', 'ячати'])
+    """
     legal_words = []
     right_words = []
     missed_words = []
