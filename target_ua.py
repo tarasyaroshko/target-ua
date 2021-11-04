@@ -4,6 +4,13 @@ TARGET GAME FOR UKRAINIAN LANGUAGE MODULE
 import random
 
 def generate_grid():
+    """
+    Generating grid that consists of 5 unique letters
+    >>> len(generate_grid())
+    5
+    >>> type(generate_grid())
+    <class 'list'>
+    """
     alphabet_letters = ['а', 'б', 'в', 'г', 'д', 'е', 'ж', 'з', 'и', 'й', 'к', 'л', 'м', 'н',\
                'о', 'п', 'р', 'с', 'т', 'у', 'ф', 'х', 'ц', 'ч', 'ш', 'щ', 'ь', 'ю',\
                'я', 'є', 'і', 'ї', 'ґ']
@@ -16,6 +23,7 @@ def generate_grid():
 
 def get_words(filename, letters):
     """
+    Getting user words
     >>> get_words('base.lst', ['є'])
     [('євнух', 'noun'), ('єврей', 'noun'), ('євро', 'noun'), ('єгер', 'noun'), ('єдваб', 'noun'), \
 ('єзуїт', 'noun'), ('єлей', 'noun'), ('ємний', 'adjective'), ('ємно', 'adverb'), \
@@ -38,6 +46,7 @@ def get_words(filename, letters):
     return words
 def check_user_words(user_words, language_part, letters, dict_of_words):
     """
+    Checking user words
     >>> check_user_words(['гаяти', 'гнати', 'ініціалізація', 'узяти', 'щавель'], "verb", \
 ['ю', 'щ', 'я', 'ц', 'г'], get_words("base.lst", ['ю', 'щ', 'я', 'ц', 'г']))
     (['гаяти', 'гнати'], ['гнити', 'гнути', 'гоїти', 'грати', 'гріти', 'густи', 'юшити', \
