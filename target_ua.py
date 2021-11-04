@@ -1,5 +1,5 @@
 """
-TARGET GAME FOR UKRAINIAN LANGUAGE
+TARGET GAME FOR UKRAINIAN LANGUAGE MODULE
 """
 import random
 
@@ -15,6 +15,13 @@ def generate_grid():
     return lst_of_letters
 
 def get_words(filename, letters):
+    """
+    >>> get_words('base.lst', ['є'])
+    [('євнух', 'noun'), ('єврей', 'noun'), ('євро', 'noun'), ('єгер', 'noun'), ('єдваб', 'noun'), \
+('єзуїт', 'noun'), ('єлей', 'noun'), ('ємний', 'adjective'), ('ємно', 'adverb'), \
+('єна', 'noun'), ('єнот', 'noun'), ('єпарх', 'noun'), ('єресь', 'noun'), ('єри', 'noun'), \
+('єрик', 'noun'), ('єрик', 'noun'), ('єство', 'noun'), ('єті', 'noun'), ('єхида', 'noun')]
+    """
     with open(filename, "r", encoding='utf-8') as file:
         words = []
         for line in file:
@@ -30,15 +37,20 @@ def get_words(filename, letters):
                     words.append((lst_line[0], "adjective"))
     return words
 def check_user_words(user_words, language_part, letters, dict_of_words):
+    legal_words = []
     right_words = []
     missed_words = []
     for word in user_words:
-        if(word, language_part) in dict_of_words:
+        word_lst = list(word)
+        if word_lst[0] in letters and len(word_lst) <= 5:
+            legal_words.append(word)
+
+    for word in legal_words:
+        word_lst = list(word)
+        if (word, language_part) in dict_of_words:
             right_words.append(word)
-    for word in dict_of_words:
-        if word[0] not in right_words:
-            missed_words.append(word)
+    for (word, language_art) in dict_of_words:
+        if language_art == language_part:
+            if word not in right_words:
+                missed_words.append(word)
     return right_words, missed_words
-
-
-
