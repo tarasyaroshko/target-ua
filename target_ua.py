@@ -18,18 +18,17 @@ def get_words(filename, letters):
     with open(filename, "r", encoding='utf-8') as file:
         words = []
         for line in file:
-            lst_line = line.split()
+            lst_line = line.replace("\n", "").split()
             if lst_line[0][0] in letters and len(lst_line[0]) <= 5:
-                if line[1].startswith("/n") or line[1].startswith("noun"):
-                    words.append(line[0], "noun")
-                elif line[1].startswith("/v"):
-                    words.append(line[0], "verb")
-                elif line[1].startswith("adv"):
-                    words.append(line[0], "adverb")
-                elif line[1].startswith("/adj"):
-                    words.append(line[0], "adjective")
+                if lst_line[1].startswith("/n") or lst_line[1].startswith("noun"):
+                    words.append((lst_line[0], "noun"))
+                elif lst_line[1].startswith("/v") or lst_line[1].startswith("verb"):
+                    words.append((lst_line[0], "verb"))
+                elif lst_line[1].startswith("adv"):
+                    words.append((lst_line[0], "adverb"))
+                elif lst_line[1].startswith("/adj") or lst_line[1].startswith("adj"):
+                    words.append((lst_line[0], "adjective"))
     return words
-
 def check_user_words(user_words, language_part, letters, dict_of_words):
     right_words = []
     missed_words = []
